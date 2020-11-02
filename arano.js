@@ -3,6 +3,7 @@ const cheerio = require('cheerio');
 const { URLSearchParams } = require('url');
 var random = require('random-name')
 var randomize = require('randomatic')
+const delay = require('delay')
 const readlineSync = require('readline-sync');
 
 const functionRegist = (email) => new Promise((resolve, reject) => {
@@ -248,6 +249,7 @@ const functionGetLink = (nickname) =>
         if (regist.auth == true){
             console.log('[+] Berhasil send OTP email.')
             const user = regist.user
+            await delay(10000)
             const getOtp = await functionGetLink(`${name}${rand}`)
             const otp = getOtp.split('com')[1]
             console.log(`[+] OTP: ${otp}`)
